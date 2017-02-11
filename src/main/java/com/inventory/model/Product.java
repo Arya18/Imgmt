@@ -27,9 +27,8 @@ import org.hibernate.annotations.Proxy;
 import com.inventory.DTO.ProductDTO;
 
 @Entity
-@Table(name = "Product")
+@Table(name = "product")
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Proxy(lazy=false)
 public class Product implements Serializable{
 	
 	@Id
@@ -48,18 +47,18 @@ public class Product implements Serializable{
 	
 	@Column(name = "quantity")
 	private long quantity;
-	
-	@Column(name = "unitPrice")
-	private double unitPrice;
-	
-	@Column(name = "purchaseUnitPrice")
-	private double purchaseUnitPrice;
-	
+		
 	@Column(name = "discountRate")
 	private double discountRate;
 	
+	@Column(name="reorderpoint")
+	private  long reorderPoint;
+	
 	@Column(name ="size")
 	private String size;
+	
+	@Column(name="starRating")
+	private String star;
 	
 	@Temporal(TemporalType.DATE)
 	private Date created;
@@ -71,14 +70,13 @@ public class Product implements Serializable{
 	
 	private long updatedby;
 	
-	@OneToMany(mappedBy = "product", fetch=FetchType.EAGER)
-	@Fetch(FetchMode.SELECT)
+	@OneToMany(mappedBy = "product")
 	private List<ProductSaleInvoice> productSaleInvoices=new ArrayList<ProductSaleInvoice>();
 	
-	@OneToMany(mappedBy="product",fetch=FetchType.EAGER)	
+	@OneToMany(mappedBy="product")	
 	private Set<ProductPurchaseInvoice> productPurchaseInvoice=new HashSet<ProductPurchaseInvoice>();
 	
-	@OneToOne(mappedBy="product" , fetch = FetchType.EAGER)
+	@OneToOne(mappedBy="product" , fetch = FetchType.LAZY)
 	private StockReport stockReport; 
 	
 	
@@ -91,7 +89,6 @@ public class Product implements Serializable{
 		this.modelNumber = productDTO.getModelNumber();
 		this.productType = productDTO.getProductType();
 		this.quantity = productDTO.getQuantity();
-		this.unitPrice = productDTO.getUnitPrice();
 		this.discountRate = productDTO.getDiscountRate();
 	}
 	
@@ -113,6 +110,14 @@ public class Product implements Serializable{
 	}
 
 	
+
+	public long getReorderPoint() {
+		return reorderPoint;
+	}
+
+	public void setReorderPoint(long reorderPoint) {
+		this.reorderPoint = reorderPoint;
+	}
 
 	public String getSize() {
 		return size;
@@ -144,14 +149,6 @@ public class Product implements Serializable{
 
 	public void setQuantity(long quantity) {
 		this.quantity = quantity;
-	}
-
-	public double getUnitPrice() {
-		return unitPrice;
-	}
-
-	public void setUnitPrice(double unitPrice) {
-		this.unitPrice = unitPrice;
 	}
 
 	public double getDiscountRate() {
@@ -202,14 +199,6 @@ public class Product implements Serializable{
 		this.productSaleInvoices = productSaleInvoices;
 	}
 
-	public double getPurchaseUnitPrice() {
-		return purchaseUnitPrice;
-	}
-
-	public void setPurchaseUnitPrice(double purchaseUnitPrice) {
-		this.purchaseUnitPrice = purchaseUnitPrice;
-	}
-
 	public Set<ProductPurchaseInvoice> getProductPurchaseInvoice() {
 		return productPurchaseInvoice;
 	}
@@ -219,9 +208,13 @@ public class Product implements Serializable{
 		this.productPurchaseInvoice = productPurchaseInvoice;
 	}
 
-	
+	public String getStar() {
+		return star;
+	}
 
-
+	public void setStar(String star) {
+		this.star = star;
+	}
 	
 	
 }

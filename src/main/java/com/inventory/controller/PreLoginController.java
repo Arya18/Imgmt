@@ -162,13 +162,6 @@ public class PreLoginController extends BaseController {
 	}
 	
 	
-	
-	@RequestMapping(value="/dashboard",method=RequestMethod.GET)
-	public String rendorDashboard(){
-		return "dashboard";
-	}
-	
-	
 	@RequestMapping(value="/home",method=RequestMethod.GET)
 	public String rendorHomePage(){
 		return "register";

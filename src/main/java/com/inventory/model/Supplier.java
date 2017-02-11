@@ -22,9 +22,8 @@ import org.json.JSONObject;
 import com.inventory.DTO.AdminDTO;
 
 @Entity
-@Table(name = "Supplier")
+@Table(name = "supplier")
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Proxy(lazy=false)
 public class Supplier implements Serializable{
 
 	public long getId() {
@@ -103,21 +102,21 @@ public class Supplier implements Serializable{
 	@Column(name = "email")
 	private String email;
 
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="adminId")
 	private Admin admin;
 
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="checkerId")
 	private Checker checker;
 
-	@OneToOne(mappedBy="supplier" , fetch = FetchType.EAGER)
-	private SupplierReport supplierReport;
+	@OneToMany(mappedBy="supplier" , fetch = FetchType.LAZY)
+	private List<SupplierReport> supplierReport;
 	
-	@OneToMany(mappedBy="supplier" , fetch = FetchType.EAGER)
+	@OneToMany(mappedBy="supplier")
 	private Set<PurchaseInvoice> purchaseInvoices;
 	
-	 Supplier(){
+	 public Supplier(){
 		
 	}
 	
@@ -128,16 +127,17 @@ public class Supplier implements Serializable{
 		this.email = adminDTO.getEmail();
 	}
 
+
 	
-	public SupplierReport getSupplierReport() {
+	
+	public List<SupplierReport> getSupplierReport() {
 		return supplierReport;
 	}
 
-	public void setSupplierReport(SupplierReport supplierReport) {
+	public void setSupplierReport(List<SupplierReport> supplierReport) {
 		this.supplierReport = supplierReport;
 	}
-	
-	
+
 	public Set<PurchaseInvoice> getPurchaseInvoices() {
 		return purchaseInvoices;
 	}

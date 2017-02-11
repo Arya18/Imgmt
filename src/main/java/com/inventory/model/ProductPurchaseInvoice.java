@@ -13,11 +13,16 @@ import javax.persistence.Table;
 @Entity
 @Table(name="product_supplier")
 public class ProductPurchaseInvoice {
+	
+	public ProductPurchaseInvoice() {
+		super();
+	}
+
 	@Id
 	@GeneratedValue
 	private long id;
 	
-	@ManyToOne(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
+	@ManyToOne
 	@JoinColumn(name = "product_id")
 	private Product product;
 	
@@ -30,7 +35,7 @@ public class ProductPurchaseInvoice {
 	@Column(name = "unit_price")
 	private double unitPrice;
 	
-	@Column(name="discountRate")
+	@Column(name="discount_rate")
 	private double discountRate;
 	
 	@Column(name="discounted_amount")
@@ -38,6 +43,21 @@ public class ProductPurchaseInvoice {
 	
 	@Column(name="unit_price_before_discount")
 	private double unitPriceBeforeDiscount;
+	
+	@Column(name="serialNo")
+	private String serialNo;
+	
+	@Column(name="indoorSerialNo")
+	private String indoorSerialNo;
+	
+	@Column(name="sale")
+	private int sale;
+	
+	@Column(name="location")
+	private String location;
+	
+	@Column(name="indoorsale")
+	private int indoorsale;
 
 	public long getId() {
 		return id;
@@ -104,6 +124,74 @@ public class ProductPurchaseInvoice {
 	public void setUnitPriceBeforeDiscount(double unitPriceBeforeDiscount) {
 		this.unitPriceBeforeDiscount = unitPriceBeforeDiscount;
 	}
+
+
+	public String getSerialNo() {
+		return serialNo;
+	}
+
+	public void setSerialNo(String serialNo) {
+		this.serialNo = serialNo;
+	}
+
+	public int getSale() {
+		return sale;
+	}
+
+	public void setSale(int sale) {
+		this.sale = sale;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public String getIndoorSerialNo() {
+		return indoorSerialNo;
+	}
+
+	public void setIndoorSerialNo(String indoorSerialNo) {
+		this.indoorSerialNo = indoorSerialNo;
+	}
+	
+	public ProductPurchaseInvoice(long id,String indoorSerialNo){
+		this.id=id;
+		this.indoorSerialNo=indoorSerialNo;
+	}
+
+	public int getIndoorsale() {
+		return indoorsale;
+	}
+
+	public void setIndoorsale(int indoorsale) {
+		this.indoorsale = indoorsale;
+	}
+	
 	
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

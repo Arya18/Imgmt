@@ -1,8 +1,10 @@
 package com.inventory.dao;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -14,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.inventory.model.Admin;
 import com.inventory.model.Product;
 import com.inventory.model.PurchaseInvoice;
+import com.inventory.model.SaleInvoice;
 
 @Transactional(propagation = Propagation.SUPPORTS, readOnly = true) 
 public class PurchaseInvoiceDaoImpl implements PurchaseInvoiceDao{
@@ -50,7 +53,6 @@ public class PurchaseInvoiceDaoImpl implements PurchaseInvoiceDao{
 			 criteria.add(Restrictions.eq("invoiceNo", purchaseInvoiceId));
 			 Object result=criteria.uniqueResult();
 			 purchaseInvoice = (PurchaseInvoice)result;
-			 session.close();
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -99,13 +101,11 @@ public class PurchaseInvoiceDaoImpl implements PurchaseInvoiceDao{
 			 criteria.add(Restrictions.eq("invoiceNo", purchaseInvoiceNo));
 			 Object result=criteria.uniqueResult();
 			 purchaseInvoice = (PurchaseInvoice)result;
-			 purchaseInvoice.setVerify(verify);
 			 session.close();
 		}
 		catch(Exception e){
 			e.printStackTrace();
 		}
-		System.out.println("before saveing :" + purchaseInvoice.isVerify());
 		try{    
 	    	session = sessionFactory.openSession();
 			tx = session.beginTransaction();
@@ -139,5 +139,45 @@ public class PurchaseInvoiceDaoImpl implements PurchaseInvoiceDao{
 		return purchaseInvoice;
 	}
 
-	
+	@Override
+	public PurchaseInvoice getpurchaseInvoiceByInvoiceNumber(
+			String purchaseInvoiceNumber) {
+		Session session;
+		PurchaseInvoice purchaseInvoice=null;
+		try{
+			session = sessionFactory.openSession();
+			Criteria criteria=session.createCriteria(PurchaseInvoice.class);
+			criteria.add(Restrictions.eq("cmpyPurchaseInvoiceNo",purchaseInvoiceNumber));
+			Object result=criteria.uniqueResult();
+			purchaseInvoice=(PurchaseInvoice)result;
+			session.close();
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		return purchaseInvoice;
+	}
+
+	@Override
+	public BigInteger paymentDueCountOfSuppliers() {
+		session = sessionFactory.openSession();
+		tx = session.beginTransaction();
+		
+		SQLQuery query = session.createSQLQuery("select count(*) from purchaseinvoice p where p.balanceLeft<0");
+		BigInteger count = (BigInteger)query.uniqueResult();
+		System.out.println(count);
+		tx.commit();
+		session.close();
+		return count;
+	}
+
+	@Override
+	public List<PurchaseInvoice> getAllDuePurchaseInvoice() {
+		session = sessionFactory.openSession();
+		@SuppressWarnings("unchecked")
+		List<PurchaseInvoice> purchaseInvoices = session.createQuery("SELECT p FROM PurchaseInvoice p WHERE  p.balanceLeft<0 ORDER BY p.balanceLeft ASC").list();
+		session.close();
+		return purchaseInvoices;
+	}
+
 }

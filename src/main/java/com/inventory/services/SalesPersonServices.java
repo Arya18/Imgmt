@@ -3,6 +3,7 @@ package com.inventory.services;
 import java.util.List;
 
 import com.inventory.DTO.AdminDTO;
+import com.inventory.model.SaleInvoice;
 import com.inventory.model.SalesPerson;
 
 public interface SalesPersonServices {

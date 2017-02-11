@@ -26,5 +26,10 @@ public class CustomerReportServicesImpl implements CustomerReportServices{
 	public List<CustomerReport> getCustomerReportList() {
 		return customerReportDao.getCustomerReportList();
 	}
+
+	@Override
+	public List<Object[]> getCustomerInvoiceReportList() {
+		return customerReportDao.getCustomerInvoiceReportList();
+	}
 	
 }

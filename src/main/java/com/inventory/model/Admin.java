@@ -18,9 +18,8 @@ import org.hibernate.annotations.Proxy;
 import com.inventory.DTO.AdminDTO;
 
 @Entity
-@Table(name = "Admin")
+@Table(name = "admin")
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Proxy(lazy=false)
 public class Admin implements Serializable {
 
 	@Id
@@ -46,22 +45,22 @@ public class Admin implements Serializable {
 	@Column(name = "password")
 	private String password;
 	
-	@OneToMany(mappedBy="admin")
+	@OneToMany(mappedBy="admin",fetch=FetchType.LAZY)
 	private Set<Checker> checkers;
 	
-	@OneToMany(mappedBy="admin")
+	@OneToMany(mappedBy="admin",fetch=FetchType.LAZY)
 	private Set<Maker> makers;
 	
-	@OneToMany(mappedBy="admin")
+	@OneToMany(mappedBy="admin",fetch=FetchType.LAZY)
 	private Set<Supplier> suppliers;
 	
-	@OneToMany(mappedBy="admin" , fetch = FetchType.EAGER)
+	@OneToMany(mappedBy="admin" ,fetch=FetchType.LAZY)
 	private Set<SaleInvoice> saleInvoice; 
 	
-	@OneToMany(mappedBy="admin" , fetch = FetchType.EAGER)
+	@OneToMany(mappedBy="admin" ,fetch=FetchType.LAZY)
 	private Set<PurchaseInvoice> purchaseInvoice;
 	
-	@OneToMany(mappedBy="admin")
+	@OneToMany(mappedBy="admin",fetch=FetchType.LAZY)
 	private Set<Customer> customer;
 	
 	

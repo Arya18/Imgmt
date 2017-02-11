@@ -11,5 +11,6 @@ public interface SupplierServices {
 	List<Supplier> supplierList(long adminId);
 	Supplier getSupplierById(long id);
 	List<Supplier> getAllSupplier();
+	Supplier getSupplierByMobileNumber(long parseLong);
 	
 }

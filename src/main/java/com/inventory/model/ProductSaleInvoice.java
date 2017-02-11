@@ -18,7 +18,7 @@ public class ProductSaleInvoice {
 	@GeneratedValue
 	private long id;
 	
-	@ManyToOne(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
+	@ManyToOne
 	@JoinColumn(name = "product_id")
 	private Product product;
 	
@@ -35,6 +35,20 @@ public class ProductSaleInvoice {
 	@Column(name="discountRate")
 	private double discountRate;
 	
+	@Column(name="cmpyPurchaseInvoiceNo")
+	private String cmpyPurchaseInvoiceNo;
+	
+	@Column(name="purchaseInvoiceDate")
+	private String purchaseInvoiceDate;
+	
+	@Column(name="serialNumber")
+	private String serialNumber;
+	
+	@Column(name="indoorSerialNo")
+	private String indoorSerialNo;
+	
+	@Column(name="cmpyPurchaseinvoiceNoForIndoor")
+	private String cmpyPurchaseinvoiceNoForIndoor;
 	
 	public long getId() {
 		return id;
@@ -82,6 +96,39 @@ public class ProductSaleInvoice {
 	}
 	public void setDiscountRate(double discountRate) {
 		this.discountRate = discountRate;
+	}
+	public String getCmpyPurchaseInvoiceNo() {
+		return cmpyPurchaseInvoiceNo;
+	}
+	public void setCmpyPurchaseInvoiceNo(String cmpyPurchaseInvoiceNo) {
+		this.cmpyPurchaseInvoiceNo = cmpyPurchaseInvoiceNo;
+	}
+	public String getPurchaseInvoiceDate() {
+		return purchaseInvoiceDate;
+	}
+	public void setPurchaseInvoiceDate(String purchaseInvoiceDate) {
+		this.purchaseInvoiceDate = purchaseInvoiceDate;
+	}
+	public String getSerialNumber() {
+		return serialNumber;
+	}
+	public void setSerialNumber(String serialNumber) {
+		this.serialNumber = serialNumber;
+	}
+	public String getIndoorSerialNo() {
+		return indoorSerialNo;
+	}
+	public void setIndoorSerialNo(String indoorSerialNo) {
+		this.indoorSerialNo = indoorSerialNo;
+	}
+	
+	public String getCmpyPurchaseinvoiceNoForIndoor() {
+		return cmpyPurchaseinvoiceNoForIndoor;
+	}
+	
+	public void setCmpyPurchaseinvoiceNoForIndoor(
+			String cmpyPurchaseinvoiceNoForIndoor) {
+		this.cmpyPurchaseinvoiceNoForIndoor = cmpyPurchaseinvoiceNoForIndoor;
 	}
 	
 	

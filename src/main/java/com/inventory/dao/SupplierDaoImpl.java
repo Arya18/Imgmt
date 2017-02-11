@@ -79,10 +79,12 @@ public class SupplierDaoImpl implements SupplierDao {
 		Supplier  supplier = null;
 		try{
 			session = sessionFactory.openSession();
-			Criteria criteria = session.createCriteria(Supplier.class);
-			 criteria.add(Restrictions.eq("id", id));
-			 Object result=criteria.uniqueResult();
-			 supplier = (Supplier)result;
+			List<Supplier> suppliers = session.createQuery("SELECT s FROM Supplier s WHERE s.id=:id").setParameter("id", id).list();
+			if(!suppliers.isEmpty()){
+			supplier=suppliers.get(0);
+			return supplier;
+			}
+			
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -101,6 +103,25 @@ public class SupplierDaoImpl implements SupplierDao {
 		
 	session.close();
 	return suppliers;
+	}
+
+	@Override
+	public Supplier getSupplierByMobileNumber(long supplierPhone) {
+		Session session=null;
+		Supplier supplier=null;
+		try{
+			session = sessionFactory.openSession();
+			Criteria criteria=session.createCriteria(Supplier.class);
+			criteria.add(Restrictions.eq("contactNo",supplierPhone));
+			Object result=criteria.uniqueResult();
+			supplier=(Supplier)result;
+			
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		session.close();
+		return supplier;
 	}
 
 }

@@ -109,6 +109,7 @@ public class AdminDaoImpl implements AdminDao{
 			 criteria.add(Restrictions.eq("id", id));
 			 Object result=criteria.uniqueResult();
 			 admin = (Admin)result;
+			 session.close();
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -132,5 +133,21 @@ public class AdminDaoImpl implements AdminDao{
 	    	e.printStackTrace();
 	    }
 		return flag;	
+	}
+
+	@Override
+	public boolean addOrUpdateAdmin(Admin admin) {
+		boolean flag = false;
+	    try{    
+	    	session = sessionFactory.openSession();
+			tx = session.beginTransaction();
+			session.saveOrUpdate(admin);
+			tx.commit();
+			session.close();
+			flag = true;
+	    }catch(Exception e){
+	    	e.printStackTrace();
+	    }
+		return flag;
 	}
 }

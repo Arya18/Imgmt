@@ -1,5 +1,7 @@
 package com.inventory.DTO;
 
+import java.util.Date;
+
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 
@@ -16,15 +18,31 @@ public class ProductDTO {
 	
 	private long quantity;
 	
-	private long unitPriceBeforeDiscount;
+	private double unitPriceBeforeDiscount;
+	
+	private String starRating;
+	
+	private String indoorPurchaseInvoiceNo;
+	
+	private String indoorModelNumber;
 	
 	private double unitPrice;
 	
 	private double discountRate;
 	
+	private double discountedAmount;
+	
 	private String size;
 	
 	private String sessionId;
+	
+	private String purchaseInvoiceNo;
+	
+	private Date purchaseInvoiceDate;
+	
+	private String serialNumber;
+	
+	private String location;
 
 	public long getId() {
 		return id;
@@ -100,12 +118,76 @@ public class ProductDTO {
 		this.size = size;
 	}
 
-	public long getUnitPriceBeforeDiscount() {
+	public double getUnitPriceBeforeDiscount() {
 		return unitPriceBeforeDiscount;
 	}
 
-	public void setUnitPriceBeforeDiscount(long unitPriceBeforeDiscount) {
+	public void setUnitPriceBeforeDiscount(double unitPriceBeforeDiscount) {
 		this.unitPriceBeforeDiscount = unitPriceBeforeDiscount;
+	}
+
+	public double getDiscountedAmount() {
+		return discountedAmount;
+	}
+
+	public void setDiscountedAmount(double discountedAmount) {
+		this.discountedAmount = discountedAmount;
+	}
+
+	public String getPurchaseInvoiceNo() {
+		return purchaseInvoiceNo;
+	}
+
+	public void setPurchaseInvoiceNo(String purchaseInvoiceNo) {
+		this.purchaseInvoiceNo = purchaseInvoiceNo;
+	}
+
+	public Date getPurchaseInvoiceDate() {
+		return purchaseInvoiceDate;
+	}
+
+	public void setPurchaseInvoiceDate(Date purchaseInvoiceDate) {
+		this.purchaseInvoiceDate = purchaseInvoiceDate;
+	}
+
+	public String getSerialNumber() {
+		return serialNumber;
+	}
+
+	public void setSerialNumber(String serialNumber) {
+		this.serialNumber = serialNumber;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public String getStarRating() {
+		return starRating;
+	}
+
+	public void setStarRating(String starRating) {
+		this.starRating = starRating;
+	}
+
+	public String getIndoorPurchaseInvoiceNo() {
+		return indoorPurchaseInvoiceNo;
+	}
+
+	public void setIndoorPurchaseInvoiceNo(String indoorPurchaseInvoiceNo) {
+		this.indoorPurchaseInvoiceNo = indoorPurchaseInvoiceNo;
+	}
+
+	public String getIndoorModelNumber() {
+		return indoorModelNumber;
+	}
+
+	public void setIndoorModelNumber(String indoorModelNumber) {
+		this.indoorModelNumber = indoorModelNumber;
 	}
 	
 	

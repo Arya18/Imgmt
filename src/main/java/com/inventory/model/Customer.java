@@ -23,9 +23,8 @@ import com.inventory.DTO.AdminDTO;
 
 
 @Entity
-@Table(name = "Customer")
+@Table(name = "customer")
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Proxy(lazy=false)
 public class Customer implements Serializable{
 
 	public long getId() {
@@ -93,33 +92,30 @@ public class Customer implements Serializable{
 	@Column(name = "email")
 	private String email;
 	
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="checkerId")
 	private Checker checker;
 
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="adminId")
 	private Admin admin;
 	
-	
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="salesPersonId")
 	private SalesPerson salesPerson;
 	
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="makerId")
 	private Maker maker;
 	
 
 
-	@OneToMany(mappedBy = "customer", fetch=FetchType.EAGER)
+	@OneToMany(mappedBy = "customer", fetch=FetchType.LAZY)
 	private Set<SaleInvoice> saleInvoice;
 	
-	@OneToMany(mappedBy = "customer", fetch=FetchType.EAGER)
+	@OneToMany(mappedBy = "customer")
 	private List<CustomerReport> customerReport;
 	
-
-
 	public List<CustomerReport> getCustomerReport() {
 		return customerReport;
 	}

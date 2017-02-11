@@ -80,9 +80,9 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                         </select>\r\n");
       out.write("\r\n");
       out.write("                    </div>        \r\n");
-      out.write("                    <div class=\"form-group\">\r\n");
+      out.write("                    <!-- <div class=\"form-group\">\r\n");
       out.write("                        <input type=\"checkbox\" name=\"remember_me\"/> Remember me\r\n");
-      out.write("                    </div>\r\n");
+      out.write("                    </div> -->\r\n");
       out.write("                </div>\r\n");
       out.write("                <div class=\"footer\">                                                               \r\n");
       out.write("                    <button type=\"submit\" class=\"btn bg-olive btn-block\">Sign me in</button>  \r\n");

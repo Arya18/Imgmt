@@ -7,5 +7,5 @@ import com.inventory.model.StockReport;
 public interface StockReportDao {
 	boolean createOrUpdateStockReport(StockReport stockReport);
 	StockReport getStockReportByProductId(long productId);
-	List<StockReport> getStockReportList();
+	List<Object[]> getStockReportList();
 }

@@ -42,4 +42,9 @@ public class SupplierServicesImpl implements SupplierServices{
 		return supplierDao.getAllSupplier();
 	}
 
+	@Override
+	public Supplier getSupplierByMobileNumber(long supplierPhone) {
+		return supplierDao.getSupplierByMobileNumber(supplierPhone);
+	}
+
 }

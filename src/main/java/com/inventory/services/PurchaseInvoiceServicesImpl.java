@@ -1,5 +1,6 @@
 package com.inventory.services;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +48,22 @@ public class PurchaseInvoiceServicesImpl implements PurchaseInvoiceServices{
 	public PurchaseInvoice getPurchaseInvoiceBySupplierReportId(
 			long supplierReportId) {
 		return purchaseInvoiceDao.getPurchaseInvoiceBySupplierReportId(supplierReportId);
+	}
+
+	@Override
+	public PurchaseInvoice getpurchaseInvoiceByInvoiceNumber(
+			String purchaseInvoiceNumber) {
+		return purchaseInvoiceDao.getpurchaseInvoiceByInvoiceNumber(purchaseInvoiceNumber);
+	}
+
+	@Override
+	public BigInteger paymentDueCountOfSuppliers() {
+		return purchaseInvoiceDao.paymentDueCountOfSuppliers();
+	}
+
+	@Override
+	public List<PurchaseInvoice> getAllDuePurchaseInvoice() {
+		return purchaseInvoiceDao.getAllDuePurchaseInvoice();
 	}
 
 }

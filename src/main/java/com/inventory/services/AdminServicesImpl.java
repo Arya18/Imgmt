@@ -20,6 +20,10 @@ public class AdminServicesImpl implements AdminServices{
 	public boolean addOrUpdateAdmin(AdminDTO adminDTO) {
 		return adminDao.addOrUpdateAdmin(adminDTO);
 	}
+	@Override
+	public boolean addOrUpdateAdmin(Admin admin) {
+		return adminDao.addOrUpdateAdmin(admin);
+	}
 
 	@Override
 	public boolean checkUnique(String username, String email) {

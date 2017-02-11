@@ -1,8 +1,8 @@
 package com.inventory.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -13,9 +13,8 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.hibernate.annotations.Proxy;
 
 @Entity
-@Table(name = "StockReport")
+@Table(name = "stockreport")
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Proxy(lazy=false)
 public class StockReport {
 
 
@@ -24,12 +23,14 @@ public class StockReport {
 	@Column(name = "id")
 	private long id;
 	
-	@OneToOne()
+	@OneToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="productId")
 	private Product product;
 	
 	@Column(name = "units")
 	private long units;
+	
+	
 
 	public long getId() {
 		return id;
@@ -55,6 +56,9 @@ public class StockReport {
 	public void setUnits(long units) {
 		this.units = units;
 	}
+
+
+	
 	
 	
 }

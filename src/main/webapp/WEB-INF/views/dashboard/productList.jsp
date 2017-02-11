@@ -12,13 +12,13 @@ margin-top:-40px;
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
-                        Data Tables
+                        Product List
                         <!-- <small>advanced tables</small> -->
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                        <li><a href="#">Tables</a></li>
-                        <li class="active">Data tables</li>
+                        <li><a href="#">Product List</a></li>
+                        <li class="active">Product List</li>
                     </ol>
                 </section>
 
@@ -31,11 +31,10 @@ margin-top:-40px;
                             <div class="box">
                                 <div class="box-header">
                                     <h3 class="box-title">Products</h3>  
-   
-     							
-     					                            
+     							    	
+                                				                            
                                 </div><!-- /.box-header -->
-                                <a href="/dashboard/addproduct" class="btn btn-primary btn-info pull-right addbutton"><span class="glyphicon glyphicon-plus"></span> Add product</a>
+                                 <a href="/dashboard/addproduct" class="btn btn-primary btn-info pull-right addbutton"><span class="glyphicon glyphicon-plus"></span> Add Product</a>
                                  
                                  <c:if test="${param.Update_Msg==true}">
      
@@ -61,9 +60,8 @@ margin-top:-40px;
                                                 <th>Model Number</th>
                                                 <th>Size</th>
                                                 <th>Discount Rate</th>
-                                                <th>Purchase Unit Price</th>
-                                                <th>Unit Price</th>
                                                 <th>Available Quantity</th>
+                                                 <th>Reorder Point</th>
                                                 <th>Create date</th>
                                                 <th>Action</th>
                                             </tr>
@@ -78,10 +76,8 @@ margin-top:-40px;
 				         <td>${product.modelNumber}</td>
 				         <td>${product.size}</td>
 				         <td>${product.discountRate}</td>
-				         <td>${product.purchaseUnitPrice}</td>
-				         <td>${product.unitPrice}</td>
-				         
 				         <td>${product.quantity}</td>
+				         <td>${product.reorderPoint}</td>
 				         <td>${product.created}</td>
 				          
 				          <td>

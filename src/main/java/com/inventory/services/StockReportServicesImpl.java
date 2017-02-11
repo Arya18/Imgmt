@@ -28,7 +28,7 @@ public class StockReportServicesImpl implements StockReportServices{
 	}
 
 	@Override
-	public List<StockReport> getStockReportList() {
+	public List<Object[]> getStockReportList() {
 		return stockReportDao.getStockReportList();
 	}
 

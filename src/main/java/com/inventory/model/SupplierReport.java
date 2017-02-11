@@ -1,30 +1,22 @@
 package com.inventory.model;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-import org.hibernate.annotations.Proxy;
 
 @Entity
-@Table(name = "SupplierReport")
+@Table(name = "supplierreport")
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Proxy(lazy=false)
 public class SupplierReport implements Serializable{
 
 	@Id
@@ -32,12 +24,15 @@ public class SupplierReport implements Serializable{
 	@Column(name = "supplierReportId")
 	private long supplierReportId;
 	
-	@OneToOne()
+	@ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="supplierId")
 	private Supplier supplier;
 	
-	@OneToMany(mappedBy="supplierReport")
-	private Set<PurchaseInvoice> purchaseInvoice ;
+	
+	@OneToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="purchaseInvoiceNo")
+	private PurchaseInvoice purchaseInvoice;
+	
 
 	public long getSupplierReportId() {
 		return supplierReportId;
@@ -56,13 +51,14 @@ public class SupplierReport implements Serializable{
 		this.supplier = supplier;
 	}
 
-	
-	public Set<PurchaseInvoice> getPurchaseInvoice() {
+	public PurchaseInvoice getPurchaseInvoice() {
 		return purchaseInvoice;
 	}
 
-	public void setPurchaseInvoice(Set<PurchaseInvoice> purchaseInvoice) {
+	public void setPurchaseInvoice(PurchaseInvoice purchaseInvoice) {
 		this.purchaseInvoice = purchaseInvoice;
 	}
+
+		
 	
 }

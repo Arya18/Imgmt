@@ -1,5 +1,6 @@
 package com.inventory.services;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,5 +32,23 @@ public class SaleInvoiceServicesImpl implements SaleInvoiceServices{
 	@Override
 	public SaleInvoice getSaleInvoiceById(long saleinvoiceNo) {
 		return saleInvoiceDao.getSaleInvoiceById(saleinvoiceNo);
+	}
+
+	@Override
+	public SaleInvoice getSaleInvoiceByinvoiceNumber(String saleInvoiceNumber) {
+		return saleInvoiceDao.getSaleInvoiceByinvoiceNumber(saleInvoiceNumber);
+	}
+
+	@Override
+	public BigInteger paymentDueCount() {
+		return saleInvoiceDao.paymentDueCount();
+	}
+
+	@Override
+	public List<SaleInvoice> getAllDueSaleInvoice() {
+		return saleInvoiceDao.getAllDueSaleInvoice();
+	}
+	public SaleInvoice getLastSaleInvoice(long customerId){
+		return saleInvoiceDao.getLastSaleInvoice(customerId);
 	}
 }

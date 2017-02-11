@@ -238,7 +238,6 @@ public class CheckerController {
 				obj.put("modelNumber", product.getModelNumber());
 				//obj.put("quantity", product.getQuantity());
 				obj.put("productType", product.getProductType());
-				obj.put("unitPrice", product.getUnitPrice());
 				obj.put("discountRate", product.getDiscountRate());
 				list.add(obj);
 			}
@@ -370,13 +369,13 @@ public class CheckerController {
 							
 							//saleInvoice.setQuantity(saleInvoiceDTO.getQuantity());
 							
-							double unitPrice = product.getUnitPrice();
+							double unitPrice = 5;
 							double discountRate = product.getDiscountRate();
 							double discountedAmountForSingleUnit = (discountRate/100)*unitPrice;
 							
 							double discountAmount = discountedAmountForSingleUnit * saleInvoiceDTO.getQuantity();
 							
-							double finalAmount = (saleInvoiceDTO.getQuantity()*product.getUnitPrice())-discountAmount;
+							double finalAmount = (saleInvoiceDTO.getQuantity()*5)-discountAmount;
 							
 							//saleInvoice.setDiscountedAmount(discountAmount);
 							saleInvoice.setFinalAmount(finalAmount);

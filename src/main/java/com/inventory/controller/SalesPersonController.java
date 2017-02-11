@@ -114,7 +114,7 @@ public class SalesPersonController {
 				obj.put("productBrand", st.getProduct().getBrand());
 				obj.put("modelNumber", st.getProduct().getModelNumber());
 				obj.put("productType", st.getProduct().getProductType());
-				obj.put("unitPrice", st.getProduct().getUnitPrice());
+				//obj.put("unitPrice", st.getProduct().getUnitPrice());
 				obj.put("discountRate", st.getProduct().getDiscountRate());
 		
 				obj.put("quantity", st.getUnits());		
@@ -159,13 +159,13 @@ public class SalesPersonController {
 							
 							//saleInvoice.setQuantity(saleInvoiceDTO.getQuantity());
 							
-							double unitPrice = product.getUnitPrice();
+							double unitPrice = 5;
 							double discountRate = product.getDiscountRate();
 							double discountedAmountForSingleUnit = (discountRate/100)*unitPrice;
 							
 							double discountAmount = discountedAmountForSingleUnit * saleInvoiceDTO.getQuantity();
 							
-							double finalAmount = (saleInvoiceDTO.getQuantity()*product.getUnitPrice())-discountAmount;
+							double finalAmount = (saleInvoiceDTO.getQuantity()*5)-discountAmount;
 							
 							//saleInvoice.setDiscountedAmount(discountAmount);
 							saleInvoice.setFinalAmount(finalAmount);

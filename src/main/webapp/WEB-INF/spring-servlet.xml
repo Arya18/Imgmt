@@ -26,7 +26,7 @@
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://localhost:3306/inventorymgmt" />
 		<property name="username" value="root" />
-		<property name="password" value="root" />
+		<property name="password" value="" />
 	</bean>
 
 	<bean id="sessionFactory"
@@ -109,6 +109,9 @@
 	<bean id="SalesPersonDao" class="com.inventory.dao.SalesPersonDaoImpl"></bean>
 	<bean id="SalesPersonServices" class="com.inventory.services.SalesPersonServicesImpl"></bean> 
 	
+	<bean id="productPurchaseInvoiceDao" class="com.inventory.dao.ProductPurchaseInvoiceDaoImpl"></bean>
+	<bean id="productPurchaseInvoiceService" class="com.inventory.services.ProductPurchaseInvoiceServiceImpl"></bean> 
+	
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
         <bean id="tilesConfigurer"
         class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
@@ -128,6 +131,14 @@
         </property>
         <property name="order" value="0"/>
     </bean>
+    
+    <bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+
+		 <!-- setting maximum upload size -->
+		<property name="maxUploadSize" value="100000" />
+
+	</bean>
     
     <mvc:interceptors>
 	<ref bean="loginCheckInterceptor" />

@@ -51,5 +51,4 @@ public class CustomerServicesImpl implements CustomerServices{
 	public Customer getCustomerByMobile(long contactNo) {
 		return customerDao.getCustomerByMobile(contactNo);
 	}
-
 }

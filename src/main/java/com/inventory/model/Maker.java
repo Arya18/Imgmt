@@ -20,9 +20,8 @@ import org.hibernate.annotations.Proxy;
 import com.inventory.DTO.AdminDTO;
 
 @Entity
-@Table(name = "Maker")
+@Table(name = "maker")
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Proxy(lazy=false)
 public class Maker implements Serializable {
 	
 	@Id
@@ -50,14 +49,14 @@ public class Maker implements Serializable {
 	
 	private Integer status;
 	
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="adminId")
 	private Admin admin;
 
-	@OneToMany(mappedBy="maker" , fetch = FetchType.EAGER)
+	@OneToMany(mappedBy="maker" ,fetch = FetchType.LAZY)
 	private Set<PurchaseInvoice> purchaseInvoice; 
 	
-	@OneToMany(mappedBy="maker")
+	@OneToMany(mappedBy="maker",fetch = FetchType.LAZY)
 	private Set<Customer> customer;
 	
 

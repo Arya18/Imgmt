@@ -1,14 +1,12 @@
 package com.inventory.services;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-
-
-
 
 import com.inventory.dao.ProductDao;
 import com.inventory.model.Product;
@@ -51,4 +49,15 @@ public class ProductServicesImpl implements ProductServices {
 	public List<Product> getAllProducts() {
 		return productDao.getAllProducts();
 	}
+
+	@Override
+	public BigInteger reorderProductCount() {
+		return productDao.reorderProductCount();
+	}
+
+	@Override
+	public List<Product> getAllReorderProducts() {
+		return productDao.getAllReorderProducts();
+	}
+	
 }

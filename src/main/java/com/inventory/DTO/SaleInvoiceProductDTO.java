@@ -23,7 +23,7 @@ public class SaleInvoiceProductDTO {
 	private String comments="ok";
 	private Date date;
 	
-	List<ProductDTO> products;
+	List<ProductDTO> productsArray;
 	public String getInvoiceNumber() {
 		return invoiceNumber;
 	}
@@ -55,11 +55,12 @@ public class SaleInvoiceProductDTO {
 		this.customerContact = customerContact;
 	}
 	
-	public List<ProductDTO> getProducts() {
-		return products;
+	
+	public List<ProductDTO> getProductsArray() {
+		return productsArray;
 	}
-	public void setProducts(List<ProductDTO> products) {
-		this.products = products;
+	public void setProductsArray(List<ProductDTO> productsArray) {
+		this.productsArray = productsArray;
 	}
 	public String getPaymentMode() {
 		return paymentMode;
@@ -104,9 +105,4 @@ public class SaleInvoiceProductDTO {
 		this.date = date;
 	}
 
-	
-	
-	
-	
-	
 }

@@ -76,21 +76,6 @@
                                         </div>
                                     </div>
                                     
-                                     <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="purchaseUnitPrice">Purchase Unit price(in Rs)</label>
-                                            <input type="text" placeholder="eg(20025.5)" name="purchaseUnitPrice" id="purchaseUnitPrice" class="form-control">
-                                        </div>
-                                    </div>
-                                    
-                                      <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="unitPrice">Unit price(in Rs)</label>
-                                            <input type="text" placeholder="eg(20025.5)" name="unitPrice" id="unitPrice" class="form-control">
-                                        </div>
-                                    </div>
-                                      
-
                                     </div><!-- /.box-body -->
 
                                     <div class="box-footer">

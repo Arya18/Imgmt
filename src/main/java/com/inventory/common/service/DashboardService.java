@@ -17,6 +17,8 @@ public class DashboardService {
 	@Autowired DashboardDao dashboardDao;
 
 	public List<Product> findProductTypeByBrand(String brandName) {
+		
+		
 		return dashboardDao.findProductTypeByBrand(brandName);
 	}
 
@@ -49,5 +51,20 @@ public class DashboardService {
 		return dashboardDao.findAllProductSaleInvoiceBySaleInvoiceid(saleInvoiceNo);
 		
 	}
+
+	public List<Product> findStar(String brandName, String productType,
+			String modelNumber) {
+		return dashboardDao.findStar(brandName,productType,modelNumber);
+	}
+
+	public Product findproductInfo(String brandName, String modelNumber) {
+		return dashboardDao.findproductInfo(brandName,modelNumber);
+	}
+
+/*	public Product findproductInfoByModelAndSerialNo(String brandName,
+			String modelNumber, String serialNo) {
+		return dashboardDao.findproductInfoByModelAndSerialNo(brandName,modelNumber,serialNo);
+	}*/
+	
 
 }

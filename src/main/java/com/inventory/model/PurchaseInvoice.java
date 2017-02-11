@@ -17,6 +17,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.hibernate.annotations.Proxy;
@@ -25,9 +27,8 @@ import com.inventory.DTO.PurchaseInvoiceDTO;
 
 
 @Entity
-@Table(name = "PurchaseInvoice")
+@Table(name = "purchaseinvoice")
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Proxy(lazy=false)
 public class PurchaseInvoice implements Serializable{
 
 	@Id
@@ -63,23 +64,27 @@ public class PurchaseInvoice implements Serializable{
 	
 	private String comments;
 	
+	@Temporal(TemporalType.DATE)
 	private Date date;
 
 	@ManyToOne
 	@JoinColumn(name="supplierId")
 	private Supplier supplier;
 	
-	@ManyToOne()
+	@ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="makerId")
 	private Maker maker;
 	
-	@ManyToOne()
+	@ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="checkerId")
 	private Checker checker;
 	
-	@ManyToOne()
+	@ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="adminId")
 	private Admin admin;
+	
+	@OneToOne(mappedBy = "purchaseInvoice", fetch=FetchType.LAZY)
+	private SupplierReport supplierReport;
 	
 	@OneToMany(mappedBy="purchaseInvoice",fetch=FetchType.EAGER)
 	private Set<ProductPurchaseInvoice> productPurchaseInvoice=new HashSet<ProductPurchaseInvoice>();

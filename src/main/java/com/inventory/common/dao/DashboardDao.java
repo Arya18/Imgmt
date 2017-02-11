@@ -85,13 +85,54 @@ public class DashboardDao {
 	}
 
 	public void savePurchaseInvoiceDetails(ProductPurchaseInvoice ppi) {
-		Session session = sessionFactory.openSession();
+		session = sessionFactory.openSession();
 		Transaction tx =session.beginTransaction();	
 		session.save(ppi);
+		System.out.println("successs");
 		tx.commit();
 		session.close();
 	}
 
-	
+	public List<Product> findStar(String brandName, String productType,
+			String modelNumber) {
+		session = sessionFactory.openSession();
+		@SuppressWarnings("unchecked")
+		List<Product> products = session.createQuery("FROM Product WHERE brand=:bn AND productType=:pt AND modelNumber=:mn").setParameter("bn",brandName).setParameter("pt",productType).setParameter("mn",modelNumber).list();
+		
+		session.close();
+		return products;	
+	}
+
+	public Product findproductInfo(String brandName, String modelNumber) {
+		session = sessionFactory.openSession();
+		Product product=null;
+		@SuppressWarnings("unchecked")
+		List<Product> products = session.createQuery("FROM Product WHERE brand=:bn AND modelNumber=:mn").setParameter("bn",brandName).setParameter("mn",modelNumber).list();
+		
+		session.close();
+		
+		if(!products.isEmpty()){
+			product=products.get(0);
+		}
+		return product;
+	}
+
+	/*public Product findproductInfoByModelAndSerialNo(String brandName,
+			String modelNumber, String serialNo) {
+		session = sessionFactory.openSession();
+		Transaction tx =session.beginTransaction();	
+		Product product=null;
+		@SuppressWarnings("unchecked")
+		List<Product> products = session.createQuery("FROM Product WHERE brand=:bn AND serialNo=:sn AND modelNumber=:mn").setParameter("bn",brandName).setParameter("sn",serialNo).setParameter("mn",modelNumber).list();
+		
+		if(!products.isEmpty()){
+			product=products.get(0);
+		}
+		
+		tx.commit();
+		session.close();
+		
+		return product;
+	}*/
 
 }

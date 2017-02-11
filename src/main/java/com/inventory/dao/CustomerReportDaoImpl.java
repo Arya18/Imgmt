@@ -3,6 +3,7 @@ package com.inventory.dao;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -45,9 +46,24 @@ public class CustomerReportDaoImpl implements CustomerReportDao{
 		
 		Criteria c = session.createCriteria(CustomerReport.class);
 
+		@SuppressWarnings("unchecked")
 		List<CustomerReport> customerReportList = c.list();
 		tx.commit();
 		session.close();
 		return customerReportList;
+	}
+	
+	@Override
+	public List<Object[]> getCustomerInvoiceReportList(){
+		session = sessionFactory.openSession();
+		tx = session.beginTransaction();
+		
+		SQLQuery query = (SQLQuery) session.createSQLQuery("select c.id,c.name,c.contactNo,c.email,c.address from customer c,customerreport cr where c.id=cr.customerId");
+		@SuppressWarnings("unchecked")
+		List<Object[]> rows = query.list();
+		tx.commit();
+		session.close();
+		return rows;
+		
 	}
 }

@@ -25,9 +25,8 @@ import org.hibernate.annotations.Proxy;
 
 
 @Entity
-@Table(name = "SaleInvoice")
+@Table(name = "saleinvoice")
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Proxy(lazy=false)
 public class SaleInvoice implements Serializable{
 
 	@Id
@@ -59,16 +58,13 @@ public class SaleInvoice implements Serializable{
 	private double balanceLeft;
 	
 	@OneToMany(mappedBy = "saleinvoice",fetch=FetchType.EAGER)
-	@Fetch(FetchMode.SELECT)
 	private List<ProductSaleInvoice> productSaleInvoices=new ArrayList<ProductSaleInvoice>();
 	
-	
-	
-	@ManyToOne()
+	@ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="checkerId")
 	private Checker checker;
 	
-	@ManyToOne()
+	@ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="adminId")
 	private Admin admin;
 	
@@ -90,7 +86,7 @@ public class SaleInvoice implements Serializable{
 	}
 
 
-	@ManyToOne()
+	@ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="salesPersonId")
 	private SalesPerson salesPerson;
 	
@@ -115,10 +111,10 @@ public class SaleInvoice implements Serializable{
 	@JoinColumn(name = "customerId")
 	private Customer customer;
 
-	@OneToOne(mappedBy = "saleInvoice", fetch=FetchType.EAGER)
+	@OneToOne(mappedBy = "saleInvoice", fetch=FetchType.LAZY)
 	private TaxInvoice taxInvoice;
 	
-	@OneToOne(mappedBy = "saleInvoice", fetch=FetchType.EAGER)
+	@OneToOne(mappedBy = "saleInvoice")
 	private CustomerReport customerReport;
 	
 
@@ -196,9 +192,6 @@ public class SaleInvoice implements Serializable{
 	public void setBalanceLeft(double balanceLeft) {
 		this.balanceLeft = balanceLeft;
 	}
-
-	
-
 
 	public List<ProductSaleInvoice> getProductSaleInvoices() {
 		return productSaleInvoices;

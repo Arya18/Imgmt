@@ -224,7 +224,7 @@ public class MakerController {
 	}*/
 	
 	
-	@RequestMapping(value = "/deletePurchaseInvoice/", method = RequestMethod.POST, headers = "content-type=application/json")
+/*	@RequestMapping(value = "/deletePurchaseInvoice/", method = RequestMethod.POST, headers = "content-type=application/json")
 	public @ResponseBody
 	void deletePurchaseInvoice(@RequestBody PurchaseInvoiceDTO purchaseInvoiceDTO,HttpServletRequest request,HttpServletResponse response) throws Exception {
 		Map<String,Object> obj = new HashMap<String,Object>();
@@ -254,7 +254,7 @@ public class MakerController {
 			response.setContentType("application/json; charset=UTF-8"); 
 			response.getWriter().print(new JSONSerializer().exclude("class","*.class","authorities").deepSerialize(obj));
 		}
-	}
+	}*/
 	
 	/*@RequestMapping(value = "/listPurchaseInvoice/", method = RequestMethod.POST, headers = "content-type=application/json")
 	public @ResponseBody

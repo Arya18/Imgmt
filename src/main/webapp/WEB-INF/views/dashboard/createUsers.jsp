@@ -23,7 +23,7 @@
                                 </div><!-- /.box-header -->
                                 <!-- form start -->
                                 
-                                <form role="form" action="/dashboard/createUsers" method="post">
+                                <form role="form" action="/dashboard/createUsers" method="post" class="registerForm">
                                  <c:if test="${hasError eq true}">
      
       							<div class="alert alert-danger text-center">
@@ -39,19 +39,30 @@
 	 						 	</div>
      							</c:if>
                                     <div class="box-body">
-                                    <div class="col-md-6">
+                                    <div class="row">
+                                      <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Email address</label>
                                             <input type="email" placeholder="Enter email" name="email" id="email" class="form-control">
                                             <div class="error_email hidden" style="color: red;"></div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
+                                       </div>
+                                      </div>
+                                    <div class="col-md-3">
                                         <div class="form-group">
                                             <label for="exampleInputPassword1">Password</label>
                                             <input type="password" placeholder="Password" name="password" id="exampleInputPassword1" class="form-control">
                                         </div>
                                     </div>
+                                    <div class="col-md-3">
+                                      <div class="form-group">
+                                        <label for="confirmPassword">Confirm password</label> <input
+                                            type="password" name="confirmPassword"
+                                            placeholder="Confirm password" class="form-control" required />
+
+                                       </div>
+                                    </div>
+                                    </div>
+                                    <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1" >Select role</label>
@@ -69,12 +80,13 @@
                                             <input type="username" placeholder="Username" id="username" name="username" class="form-control">
                                         </div>
                                     </div>
+                                    </div>
                                          <div class="radio">
                                             <label class="">
-                                                <div class="iradio_minimal" style="position: relative;" aria-checked="false" aria-disabled="false"><input type="radio" value="active" name="status" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;"></ins></div> Active
+                                                <div class="iradio_minimal" style="position: relative;" aria-checked="false" aria-disabled="false"><input required type="radio" value="active" name="status" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;"></ins></div> Active
                                             </label>
                                             <label class="">
-                                                <div class="iradio_minimal" style="position: relative;" aria-checked="false" aria-disabled="false"><input type="radio" name="status" value="inactive" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;"></ins></div> Inactive
+                                                <div class="iradio_minimal" style="position: relative;" aria-checked="false" aria-disabled="false"><input required type="radio" name="status" value="inactive" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;"></ins></div> Inactive
                                             </label>
                                         </div> 
 
@@ -104,8 +116,9 @@
               <script>
       function checkUniqueExistance(role){
     	   var email=$('#email').val();
+    	   alert(email);
     	   if(email.trim().length>0){
-    	   var url="/dashboard/checkUniqueEmail/"+role+"/"+email;
+    	   var url="/dashboard/checkUniqueEmail/"+role+"/"+email+"/";
     	  
     	   $.ajax({
     	           url : url,
@@ -130,4 +143,94 @@
     	         });
        } 
       }
+      
+      
+      $(document)
+      .ready(
+              function() {
+                  console.log("started")
+                  $('.registerForm')
+                          .bootstrapValidator(
+                                  {
+
+                                      message : 'This value is not valid',
+                                      feedbackIcons : {
+
+                                      },
+                                      fields : {
+                                          username : {
+                                              message : 'The username is not valid',
+                                              validators : {
+                                                  notEmpty : {
+                                                      message : 'The username is required and cannot be empty'
+                                                  },
+                                              
+                                                  regexp : {
+                                                      regexp : /^[a-zA-Z0-9_]+$/,
+                                                      message : 'The username can only consist of alphabetical, number and underscore'
+                                                  }
+                                              }
+                                          },
+                                          email : {
+                                              validators : {
+                                                  notEmpty : {
+                                                      message : 'The email is required and cannot be empty'
+                                                  },
+                                                  emailAddress : {
+                                                      message : 'The input is not a valid email address'
+                                                  }
+                                              }
+                                          },
+
+                                          password : {
+                                              validators : {
+                                                  notEmpty : {
+                                                      message : 'The password is required'
+                                                  },
+                                                  stringLength : {
+                                                      min : 6,
+                                                      max : 10,
+                                                      message : 'The password must minimum 6 character and maximum 10 character long'
+                                                  }
+
+                                              }
+                                          },
+                                          mobile : {
+                                              validators : {
+                                                  notEmpty : {
+                                                      message : 'Mobile Number is required'
+                                                  },
+                                                  stringLength : {
+                                                      min : 10,
+                                                      max : 10,
+                                                      message : 'Mobile Number consist of 10 digits'
+                                                  },
+                                                  regexp : {
+                                                      regexp : /^[0-9_\.]+$/,
+                                                      message : 'Mobile Number consist of only numeric values'
+                                                  }
+                                              }
+                                          },
+                                          confirmPassword : {
+                                              validators : {
+                                                  notEmpty : {
+                                                      message : 'Confirm Password is required'
+                                                  },
+                                                  identical : {
+                                                      field : 'password',
+                                                      message : 'The password and its confirm are not the same'
+                                                  }
+                                              }
+                                          },
+
+                                          role : {
+                                              validators : {
+                                                  notEmpty : {
+                                                      message : 'Select role please.'
+                                                  }
+                                              }
+                                          }
+                                      }
+                                  });
+              });
        </script>

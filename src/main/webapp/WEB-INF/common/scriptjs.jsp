@@ -7,6 +7,8 @@
 
 <c:url value="/resources/js/plugins/datatables/dataTables.bootstrap.js" var="DataTableBootstrapJs"/>
 
+<c:url value="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.js" var="bootstrapValidatorJs"/>
+
 
         <!-- Bootstrap -->
         <script src="${bootstrapJs}" type="text/javascript"></script>
@@ -35,5 +37,7 @@
         
               <c:url value="/resources/js/plugins/timepicker/bootstrap-timepicker.min.js" var="timePicker"/>
           <script src="${timePicker}" type="text/javascript"></script>
+          
+           <script src="${bootstrapValidatorJs}" type="text/javascript"></script>
       
      

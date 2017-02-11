@@ -3,6 +3,7 @@ package com.inventory.dao;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -59,16 +60,18 @@ public class StockReportDaoImpl implements StockReportDao{
 	}
 
 	@Override
-	public List<StockReport> getStockReportList() {
+	public List<Object[]> getStockReportList() {
 		session = sessionFactory.openSession();
 		tx = session.beginTransaction();
 		
-		Criteria c = session.createCriteria(StockReport.class);
-
-		List<StockReport> stockReportList = c.list();
+		SQLQuery query = (SQLQuery) session.createSQLQuery("select p.brand,p.productType,p.modelNumber,sr.units,p.reorderpoint from stockreport sr,product p where sr.productId=p.id");
+		@SuppressWarnings("unchecked")
+		List<Object[]> rows = query.list();
 		tx.commit();
 		session.close();
-		return stockReportList;
-	}
+		return rows;
+		}
+		
+		
 
 }

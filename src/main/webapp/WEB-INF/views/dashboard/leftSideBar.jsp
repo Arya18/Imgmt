@@ -59,7 +59,7 @@
                                </c:if> 
                                 <li><a href="/dashboard/customers"><i class="fa fa-angle-double-right"></i> Customers</a></li>
                                 <c:if test="${HTTP_SESSION_USER.role=='Checker'|| HTTP_SESSION_USER.role=='Maker' || HTTP_SESSION_USER.role=='Admin'}">
-                                <li><a href="#"><i class="fa fa-angle-double-right"></i> Retailers</a></li>
+                               <!--  <li><a href="#"><i class="fa fa-angle-double-right"></i> Retailers</a></li> -->
                                 </c:if> 
                             </ul>
                         </li>
@@ -72,7 +72,7 @@
                                 <li><a href="/dashboard/salesinvoice"><i class="fa fa-angle-double-right"></i> Sale invoice</a></li>
                                 <c:if test="${HTTP_SESSION_USER.role=='Checker'|| HTTP_SESSION_USER.role=='Maker' || HTTP_SESSION_USER.role=='Admin'}">
                                 <li><a href="/dashboard/purchaseInvoice"><i class="fa fa-angle-double-right"></i> Purchase invoice</a></li>
-                                <li><a href="#"><i class="fa fa-angle-double-right"></i> Tax invoice</a></li>
+                               <!--  <li><a href="#"><i class="fa fa-angle-double-right"></i> Tax invoice</a></li> -->
                                  </c:if> 
                             </ul>
                         </li>
@@ -84,10 +84,10 @@
                             <ul class="treeview-menu">
                                 <li><a href="/dashboard/customerReport"><i class="fa fa-angle-double-right"></i> Customer report</a></li>
                                 <c:if test="${HTTP_SESSION_USER.role=='Checker'|| HTTP_SESSION_USER.role=='Maker' || HTTP_SESSION_USER.role=='Admin'}">
-                                <li><a href="#"><i class="fa fa-angle-double-right"></i> Supplier report</a></li>
-                                <li><a href="#"><i class="fa fa-angle-double-right"></i> Retailer report</a></li>
+                                <li><a href="/dashboard/supplierReport"><i class="fa fa-angle-double-right"></i> Supplier report</a></li>
+                                <!-- <li><a href="/dashboard/retailerReport"><i class="fa fa-angle-double-right"></i> Retailer report</a></li> -->
                                 </c:if>
-                                <li><a href="#"><i class="fa fa-angle-double-right"></i> Stock report</a></li>
+                                <li><a href="/dashboard/stockReport"><i class="fa fa-angle-double-right"></i> Stock report</a></li>
                             </ul>
                         </li>
                         

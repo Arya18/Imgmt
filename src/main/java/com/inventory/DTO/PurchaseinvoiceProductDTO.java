@@ -16,7 +16,7 @@ public class PurchaseinvoiceProductDTO {
 	private String comments="ok";
 	private Date date;
 	private long supplierId;
-	List<ProductDTO> products;
+	List<ProductDTO> productsArray;
 	public String getInvoiceNumber() {
 		return invoiceNumber;
 	}
@@ -59,11 +59,12 @@ public class PurchaseinvoiceProductDTO {
 	public void setSupplierId(long supplierId) {
 		this.supplierId = supplierId;
 	}
-	public List<ProductDTO> getProducts() {
-		return products;
+	
+	public List<ProductDTO> getProductsArray() {
+		return productsArray;
 	}
-	public void setProducts(List<ProductDTO> products) {
-		this.products = products;
+	public void setProductsArray(List<ProductDTO> productsArray) {
+		this.productsArray = productsArray;
 	}
 	public double getTotalDiscount() {
 		return totalDiscount;

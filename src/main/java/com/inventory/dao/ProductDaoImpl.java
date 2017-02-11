@@ -1,8 +1,10 @@
 package com.inventory.dao;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -12,7 +14,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.inventory.model.Checker;
 import com.inventory.model.Product;
 
 @Repository
@@ -114,6 +115,29 @@ public class ProductDaoImpl implements ProductDao{
 		
 		@SuppressWarnings("unchecked")
 		List<Product> products = session.createQuery("SELECT p FROM Product p").list();
+			
+		session.close();
+		return products;
+	}
+
+	@Override
+	public BigInteger reorderProductCount() {
+		session = sessionFactory.openSession();
+		tx = session.beginTransaction();
+		
+		SQLQuery query = session.createSQLQuery("select count(*) from product p where p.quantity<p.reorderpoint");
+		BigInteger count = (BigInteger)query.uniqueResult();
+		tx.commit();
+		session.close();
+		return count;
+	}
+	
+	@Override
+	public List<Product> getAllReorderProducts(){
+	session = sessionFactory.openSession();
+		
+		@SuppressWarnings("unchecked")
+		List<Product> products = session.createQuery("SELECT p FROM Product p where p.quantity<p.reorderPoint ORDER BY p.reorderPoint ASC").list();
 			
 		session.close();
 		return products;

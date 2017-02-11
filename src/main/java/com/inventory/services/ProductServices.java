@@ -1,5 +1,6 @@
 package com.inventory.services;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import com.inventory.model.Product;
@@ -11,4 +12,6 @@ public interface ProductServices {
 	List<Product> productList();
 	Product getProductById(long productId);
 	List<Product> getAllProducts();
+	BigInteger reorderProductCount();
+	List<Product> getAllReorderProducts();
 }

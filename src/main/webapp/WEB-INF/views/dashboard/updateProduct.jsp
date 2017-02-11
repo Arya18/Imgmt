@@ -75,21 +75,13 @@
                                         </div>
                                     </div>
                                     
-                                     <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="purchaseUnitPrice">Purchased Unit price(in Rs)</label>
-                                            <input type="text" placeholder="eg(30025.5)" name="purchaseUnitPrice" id="purchaseUnitPrice" value="${product.purchaseUnitPrice}" class="form-control">
-                                        </div>
-                                    </div>
-                                    
                                       <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="unitPrice">Unit price(in Rs)</label>
-                                            <input type="text" placeholder="eg(20025.5)" name="unitPrice" id="unitPrice" value="${product.unitPrice}" class="form-control">
+                                            <label for="reorderPoint">Reorder Point</label>
+                                            <input type="number" placeholder="Reorder point" id="reorderPoint" min="0" name="reorderPoint" value="${product.reorderPoint}" class="form-control">
                                         </div>
                                     </div>
-                                      
-
+                           
                                     </div><!-- /.box-body -->
 
                                     <div class="box-footer">

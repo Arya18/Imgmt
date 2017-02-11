@@ -70,4 +70,33 @@
 	<definition name="purchaseInvoice" extends="dashboard">
 		 <put-attribute name="body" value="/WEB-INF/views/dashboard/purchaseInvoice.jsp" />
 	</definition>
+		<definition name="myprofile" extends="dashboard">
+		 <put-attribute name="body" value="/WEB-INF/views/dashboard/myprofile.jsp" />
+	</definition>
+	
+		<definition name="stock-report" extends="dashboard">
+		 <put-attribute name="body" value="/WEB-INF/views/dashboard/stockReport.jsp" />
+	</definition>
+	
+	<definition name="supplier-report" extends="dashboard">
+		 <put-attribute name="body" value="/WEB-INF/views/dashboard/supplierReport.jsp" />
+	</definition>
+	<definition name="final-purchaseInvoice" extends="dashboard">
+		 <put-attribute name="body" value="/WEB-INF/views/dashboard/finalPurchaseInvoice.jsp" />
+	</definition>
+		<definition name="reorder-product-report" extends="dashboard">
+		 <put-attribute name="body" value="/WEB-INF/views/dashboard/reorderStockReport.jsp" />
+	</definition>
+		<definition name="product-singleUnitList" extends="dashboard">
+		 <put-attribute name="body" value="/WEB-INF/views/dashboard/singleProductUnitList.jsp" />
+	</definition>
+	<definition name="update-unit-location" extends="dashboard">
+		 <put-attribute name="body" value="/WEB-INF/views/dashboard/updateSingleProductUnit.jsp"/>
+	</definition>
+	<definition name="due-saleInvoice" extends="dashboard">
+		 <put-attribute name="body" value="/WEB-INF/views/dashboard/dueSaleInvoice.jsp"/>
+	</definition>
+	<definition name="due-purchaseInvoice" extends="dashboard">
+		 <put-attribute name="body" value="/WEB-INF/views/dashboard/duePurchaseInvoice.jsp"/>
+	</definition>
 </tiles-definitions>

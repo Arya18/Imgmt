@@ -10,4 +10,5 @@ public interface AdminDao {
 	Admin getAdminByUsername(String username);
 	Admin getAdminById(long id);
 	boolean saveSignUpDetails(Admin admin);
+	boolean addOrUpdateAdmin(Admin admin);
 }
