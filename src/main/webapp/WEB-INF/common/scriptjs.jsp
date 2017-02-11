@@ -7,6 +7,8 @@
 
 <c:url value="/resources/js/plugins/datatables/dataTables.bootstrap.js" var="DataTableBootstrapJs"/>
 
+<c:url value="/resources/js/custom/commonUtility.js" var="commonUtilityJs"/>
+
 <c:url value="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.js" var="bootstrapValidatorJs"/>
 
 
@@ -14,6 +16,8 @@
         <script src="${bootstrapJs}" type="text/javascript"></script>
         <!-- AdminLTE App -->
         <script src="${AdminLTEApp}" type="text/javascript"></script>
+        
+        <script src="${commonUtilityJs}" type="text/javascript"></script>
         
          <script src="${DataTableJs}" type="text/javascript"></script>
          

@@ -20,7 +20,7 @@
                   <div class="control-group">
 					<label class="control-label">Upload your CSV file </label>
 					<div class="controls">
-					<input type="file" id ="importCsvforUpdate" name="uploadPurchaseInvoice">  <a href="/dashboard/downloadforPurchaseInvoice">Download sample for Update</a></br></br> 
+					<input type="file" id ="importCsvforUpdate" name="uploadPurchaseInvoice" accept=".csv" pattern="^.+\.(csv)$" onChange="validateFileInput(this)">  <a href="/dashboard/downloadforPurchaseInvoice">Download sample for Update</a></br></br> 
 					  <div class="control-label importErrMsg"></div>
 					  <input type="submit" class="btn btn-success btn-pass" value="Submit"/>
 									
